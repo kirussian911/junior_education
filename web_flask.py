@@ -4,6 +4,7 @@ from bs4 import BeautifulSoup as bs
 
 app = Flask(__name__)
 
+
 @app.route('/live/', methods=['GET'])
 def html():
     url = 'https://football.kulichki.net/live.htm'
