@@ -1,16 +1,10 @@
-from flask import Flask
 from flask_login import LoginManager
 from route import admin
 from models import db, Users
+from config import app
 
 
 if __name__ == '__main__':
-    app = Flask(__name__)
-    app.config['SECRET_KEY'] = 'the random string'
-    app.config[
-        'SQLALCHEMY_DATABASE_URI'] = "sqlite:///C:/Users/user/PycharmProjects/Eqvanta/flask_auth_app/project/db.sqlite"
-    app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-
     db.init_app(app)
 
     login_manager = LoginManager()
