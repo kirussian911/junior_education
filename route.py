@@ -15,13 +15,11 @@ admin = Blueprint('main', __name__)
 def login():
     return render_template('login.html')
 
-
 @admin.route('/login', methods=['POST'])
 def login_post():
     email = request.form.get('email')
     password = request.form.get('password')
     user = Users.query.filter_by(email=email).first()
-
     remember = True if request.form.get('remember') else False
 
     if not user or not check_password_hash(user.password, password):

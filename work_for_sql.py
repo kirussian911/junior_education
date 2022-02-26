@@ -1,6 +1,7 @@
 import sqlite3 as sql
 import logging
 
+
 from config import table_name
 
 
@@ -34,7 +35,6 @@ class Database:
         :param data: условия для выборки
         :return: список данных
         """
-
         try:
             term_where = "SELECT {} FROM {} ".format(','.join(*args), self.table_name)
             if len(data) > 1:
