@@ -26,7 +26,7 @@ def login_post():
 
     if not user or not check_password_hash(user.password, password):
         flash('Please check your login details and try again.')
-        return redirect(url_for('main.login'))  # if the user doesn't exist or password is wrong, reload the page
+        return redirect(url_for('main.login'))
 
     login_user(user, remember=remember)
     return redirect(url_for('main.profile'))
@@ -67,16 +67,15 @@ def signup_post():
     email = request.form.get('email')
     name = request.form.get('name')
     password = request.form.get('password')
-
     user = Users.query.filter_by(email=email).first()
 
     if user:
         return redirect(url_for('main.signup'))
 
-    # create a new user with the form data. Hash the password so the plaintext version isn't saved.
+    # Создание нового юзера и кэширование пароля
     new_user = Users(email=email, name=name, password=generate_password_hash(password, method='sha256'))
 
-    # add the new user to the database
+    # добавление нового юзера в БД
     db.session.add(new_user)
     db.session.commit()
 
