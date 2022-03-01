@@ -1,12 +1,14 @@
-from flask import Blueprint, render_template, redirect, url_for, request, flash
-from werkzeug.security import generate_password_hash, check_password_hash
-from models import Users
-from models import db
-from flask_login import login_user, login_required, current_user, logout_user
 import requests
 from bs4 import BeautifulSoup as bs
+from flask import Blueprint, render_template, redirect, url_for, request, flash
+from flask import jsonify
+from flask_login import login_user, login_required, current_user, logout_user
 from markupsafe import Markup
+from sqlalchemy import inspect
+from werkzeug.security import generate_password_hash, check_password_hash
 
+from models import Users, Fbref
+from models import db
 
 admin = Blueprint('main', __name__)
 
@@ -14,6 +16,7 @@ admin = Blueprint('main', __name__)
 @admin.route('/login')
 def login():
     return render_template('login.html')
+
 
 @admin.route('/login', methods=['POST'])
 def login_post():
@@ -76,5 +79,41 @@ def signup_post():
     # добавление нового юзера в БД
     db.session.add(new_user)
     db.session.commit()
-
     return redirect(url_for('main.login'))
+
+
+def object_as_dict(obj):
+    return {c.key: getattr(obj, c.key) for c in inspect(obj).mapper.column_attrs}
+
+
+@admin.route('/match', methods=['GET'])
+def match():
+    # TODO проверять, если user есть, то выводить, иначе - нет.
+    match = Fbref.query.filter_by(squad='Arsenal').first()
+    return object_as_dict(match)
+
+
+@admin.route('/get_matches', methods=['POST'], endpoint='response')
+@login_required
+def get_matches():
+    league = request.form.get('comp')
+    tour = request.form.get('round')
+    count_matches = request.form.get('count')
+    response = Fbref.query.filter_by(comp=league, round=tour).limit(count_matches).all()
+    return jsonify(result=[object_as_dict(r) for r in response])
+
+
+@admin.route('/get_result', methods=['POST'], endpoint='response_new')
+@login_required
+def get_matches():
+    year = request.form.get('date')
+    league = request.form.get('comp')
+    home_team = request.form.get('squad')
+    away_team = request.form.get('opponent')
+    response_new = Fbref.query.filter_by(date=year, comp=league, squad=home_team, opponent=away_team).first()
+    if response_new is not None:
+        return object_as_dict(response_new)
+    else:
+        # TODO делаем парсер по этому запросу
+        pass
+

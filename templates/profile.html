@@ -3,6 +3,107 @@
 {% block content %}
 
 <h1 class="title">
-  Welcome, {{ name }}!
+    Welcome, {{ name }}!
 </h1>
+
+
+<!--<div class="field">-->
+<!--    <div class="control">-->
+<!--        <input class="input is-large" name="comp">-->
+<!--    </div>-->
+<!--</div>-->
+
+<!--<div class="field">-->
+<!--    <div class="control">-->
+<!--        <input class="input is-large" name="round">-->
+<!--    </div>-->
+<!--</div>-->
+
+<!--<div class="field">-->
+<!--    <div class="control">-->
+<!--        <input class="input is-large" name="count">-->
+<!--    </div>-->
+<!--</div>-->
+
+
+<!--<button id="send" class="button is-block is-info is-large is-fullwidth">Get Matches</button>-->
+<!--<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>-->
+
+<!--<script type="text/javascript">-->
+<!--    $(function () {-->
+<!--        $("#send").on("click", function () {-->
+<!--&lt;!&ndash;      console.log($("input[name='comp']").val());&ndash;&gt;-->
+<!--      $.ajax({-->
+<!--        type:'POST',-->
+<!--        url:'/get_matches',-->
+<!--        data:{-->
+<!--           comp:  $("input[name='comp']").val(),-->
+<!--           round: $("input[name='round']").val(),-->
+<!--           count: $("input[name='count']").val()-->
+<!--        },-->
+<!--        success: function(response)-->
+<!--        {-->
+<!--        console.log(response);-->
+<!--        }-->
+<!--      })-->
+<!--    })-->
+<!--  })-->
+
+<!--</script>-->
+
+<br>
+<br>
+
+<div class="field">
+    <div class="control">
+        <input class="input is-large" name="date" placeholder="year-month-day">
+    </div>
+</div>
+
+<div class="field">
+    <div class="control">
+        <input class="input is-large" name="comp" placeholder="league">
+    </div>
+</div>
+
+<div class="field">
+    <div class="control">
+        <input class="input is-large" name="squad" placeholder="home team">
+    </div>
+</div>
+
+<div class="field">
+    <div class="control">
+        <input class="input is-large" name="opponent" placeholder="away team">
+    </div>
+</div>
+
+
+<!--suppress XmlDuplicatedId -->
+<button id="send" class="button is-block is-info is-large is-fullwidth">Get Result</button>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+
+<script type="text/javascript">
+    $(function () {
+        $("#send").on("click", function () {
+      $.ajax({
+        type:'POST',
+        url:'/get_result',
+        data:{
+           date: $("input[name='date']").val(),
+           comp: $("input[name='comp']").val(),
+           squad: $("input[name='squad']").val(),
+           opponent: $("input[name='opponent']").val(),
+        },
+        success: function(response_new)
+        {
+        console.log(response_new);
+        }
+      })
+    })
+  })
+
+</script>
+
+<br>
 {% endblock %}

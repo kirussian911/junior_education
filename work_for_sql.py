@@ -1,6 +1,5 @@
-import sqlite3 as sql
 import logging
-
+import sqlite3 as sql
 
 from config import table_name
 
@@ -36,11 +35,10 @@ class Database:
         :return: список данных
         """
         try:
-            term_where = "SELECT {} FROM {} ".format(','.join(*args), self.table_name)
+            term_where = "SELECT {} FROM {} ".format(','.join(args), self.table_name)
             if len(data) > 1:
                 term_where += "WHERE "
                 term_where += " AND ".join(f"{k} = '{v}'" for k, v in data.items())
-
             select_rows = self.cursor.execute(term_where + " LIMIT %d" % (limit))
             columns = [row[0] for row in select_rows.description]
         except (sql.Error, sql.Warning) as error:
