@@ -6,6 +6,7 @@ from config import app
 
 db = SQLAlchemy(app=app)
 
+
 # Создание промежуточной таблицы для сохранения данных: id user и сохраненные id матчей
 association_table = db.Table(
     'users_select', db.Model.metadata,

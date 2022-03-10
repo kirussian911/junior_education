@@ -10,6 +10,7 @@ from for_sql.work_for_sql import Database
 from config import path_to_dbase
 
 
+
 FIXTURES = ['date', 'comp', 'round', 'dayofweek', 'venue', 'result', 'goals_for', 'goals_against', 'opponent',
             'possession', 'attendance', 'captain', 'formation', 'referee']
 LEAGUES = ['9/stats/Premier-League-Stats']

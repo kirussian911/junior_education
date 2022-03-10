@@ -5,6 +5,7 @@ from typing import Any
 from config import table_name
 
 
+
 class Database:
     __doc__ = """Класс для обработки SELECT и INSERT методов при работе с БД"""
 

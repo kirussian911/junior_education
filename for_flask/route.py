@@ -144,12 +144,6 @@ def object_as_dict(obj) -> dict:
     return {c.key: getattr(obj, c.key) for c in inspect(obj).mapper.column_attrs}
 
 
-# @admin.route('/match', methods=['GET'])
-# def match():
-#     match = Fbref.query.filter_by(squad='Arsenal').first()
-#     return object_as_dict(match)
-
-
 @lru_cache(maxsize=50)
 def get_matches(league, tour, count_matches) -> list:
     """Получение данных по запросу в форме Get Matches"""

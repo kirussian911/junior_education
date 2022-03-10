@@ -17,3 +17,4 @@ if __name__ == '__main__':
 
     app.register_blueprint(admin)
     app.run(debug=True)
+
