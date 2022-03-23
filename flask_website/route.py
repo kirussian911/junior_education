@@ -7,14 +7,13 @@ sys.path.append('C:\\Users\\user\\PycharmProjects\\Eqvanta')
 
 import requests
 from bs4 import BeautifulSoup as bs
-from flask import Blueprint, render_template, redirect,  url_for, request, flash
-from flask_login import login_user, login_required, current_user, logout_user
+from flask import Blueprint, flash, redirect, render_template, request, url_for
+from flask_login import current_user, login_required, login_user, logout_user
+from database_sql.models import Fbref, Users, db
 from markupsafe import Markup
+from parsers.parsing_match_data import get_response_match, get_url_match
 from sqlalchemy import inspect
-from werkzeug.security import generate_password_hash, check_password_hash
-
-from for_sql.models import db, Users, Fbref
-from parsers.pars_find_match import get_url_match, get_response_match
+from werkzeug.security import check_password_hash, generate_password_hash
 
 admin = Blueprint('main', __name__)
 

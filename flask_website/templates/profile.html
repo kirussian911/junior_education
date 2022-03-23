@@ -5,17 +5,19 @@
 
 <style>
     .queryGetUrl {
-        display: flexbox;
+        display: flex;
         justify-content: right import;
     }
 
-    h4 {
-        text-align: left;
-    }
+    h4 {text-align: left;}
 
-    input {
-        height: 50px;
-    }
+    input {height: 50px; 
+       }
+    
+    .field {
+    margin-right: 10px;
+}
+
 </style>
 
 
@@ -23,9 +25,8 @@
     Welcome, {{ name }}!
 </h1>
 
-
-<div class="queryGetUrl" >
-    <form method="POST" action="/profile">
+<form method="POST" action="/profile">
+    <div class="queryGetUrl" >
         <div class="field">
             <div class="control">
                 <input id="dataSend" required class="input is-large" name="league" placeholder="league" value="{{ league }}" >
@@ -45,9 +46,10 @@
         </div>
 
         <button style="width: 200px; height: 50px;" class="button is-block is-info is-large is-fullwidth">Get Matches</button>
-    </form>
-</div>
+    </div>
+</form>
 
+<br>
 <br>
 
 
@@ -81,8 +83,8 @@
 <br>
 <br>
 
-<div class="queryGetUrl" >
-    <form method="POST" action="/profile">
+<form method="POST" action="/profile">
+    <div class="queryGetUrl" >
         <div class="field">
             <div class="control">
                 <input id="dataSend2"  required class="input is-large" name="date" placeholder="year-month-day" value="{{ date }}">
@@ -106,9 +108,9 @@
                 <input id="dataSend2" required class="input is-large" name="opponent" placeholder="away team" value="{{ opponent }}">
             </div>
         </div>
-        <button style="width: 200px; height: 50px;" class="button is-block is-info is-large is-fullwidth">Get Result</button>
-    </form>
-</div>
+        <button style="width: 200px; height: 50px;" class="button is-block is-info is-large is-fullwidth">Get Result</button> 
+    </div>
+</form>
 
 <br>
 

@@ -2,8 +2,7 @@ import logging
 import sqlite3 as sql
 from typing import Any
 
-from config import table_name
-
+from flask_website.config import table_name
 
 
 class Database:

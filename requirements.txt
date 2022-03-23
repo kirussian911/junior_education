@@ -1,5 +1,6 @@
 flask == 2.0.3
 beautifulsoup4 == 4.10.0
-sqlalchemy == 2.5.1
+sqlalchemy
 aiohttp == 3.8.1
-request == 2.27.1
+requests
+flask_sqlalchemy

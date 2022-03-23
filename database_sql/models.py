@@ -1,8 +1,7 @@
 from flask_login import UserMixin
 from flask_sqlalchemy import SQLAlchemy
+from flask_website.config import app
 from sqlalchemy import UniqueConstraint, inspect
-
-from config import app
 
 db = SQLAlchemy(app=app)
 

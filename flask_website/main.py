@@ -1,7 +1,12 @@
+import sys
+
 from flask_login import LoginManager
 
+sys.path.append('C:\\Users\\user\\PycharmProjects\\Eqvanta')
+
+from database_sql.models import Users, db
+
 from config import app
-from for_sql.models import db, Users
 from route import admin
 
 if __name__ == '__main__':

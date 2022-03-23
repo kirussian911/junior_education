@@ -5,11 +5,8 @@ import requests
 sys.path.append('C:\\Users\\user\\PycharmProjects\\Eqvanta')
 
 from bs4 import BeautifulSoup
-from for_sql.work_for_sql import Database
-
-from config import path_to_dbase
-
-
+from flask_website.config import path_to_dbase
+from database_sql.methods_sql import Database
 
 FIXTURES = ['date', 'comp', 'round', 'dayofweek', 'venue', 'result', 'goals_for', 'goals_against', 'opponent',
             'possession', 'attendance', 'captain', 'formation', 'referee']
@@ -79,5 +76,5 @@ if __name__ == '__main__':
         data_teams = get_response_team(team_table)  # получение всех матчей каждой команды
         df_squad = get_frame_team(FIXTURES, data_teams)
 
-        with Database(path_to_dbase) as dbase:
-            sel = dbase.select('count(*)', limit=10_000)
+        # with Database(path_to_dbase) as dbase:
+        #     sel = dbase.select('count(*)', limit=10_000)
